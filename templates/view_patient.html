@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div>
+    <h2 class="text-center mt-3">View Patient</h2>
+    <br>
+    <div class="container">
+    {% include 'parts/alert.html' %}
+    </div>
+    <hr>
+    <table class="table table-hover mt-3">
+        <thead>
+          <tr>
+            <th scope="col">Patient Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Address  </th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for pat in patients %}
+          <tr>
+            <td>{{pat.id}}</td>
+            <td>{{pat.name}}</td>
+            <td>{{pat.gender}}</td>
+            <td>{{pat.mobile}}</td>
+            <td>{{pat.address}}</td>
+            <td>
+                <a href="{% url 'delete_patient' pat.id %}"
+                onclick="return confirm('Are You Sure To Delete Patient')" class="btn btn-danger">Delete</a>  
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+</div>    
+<br>
+{% endblock content %}  

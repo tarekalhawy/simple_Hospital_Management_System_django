@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="container">
+        {% if request.user.is_authenticated %}
+        <script>
+            alert('Logged In Cuccessfully');
+            window.location = "{% url 'dashboard' %}"
+        </script>
+    {% else %}
+        <script>
+            alert('Invalid Username or Password');
+        </script>
+    {% endif %}
+    <h2 class="text-center mt-5">Admin Login</h2>
+    <br>
+    <hr>
+    <br>
+    {% include 'parts/alert.html' %}
+    <form method="POST">
+        {% csrf_token %}
+        <label>Admin name </label>
+        <input type="text" class="form-control" name="user">
+        <label>Password </label>
+        <input type="password" class="form-control" name="pass">
+
+
+        <input type="submit" name="btnin" value="login" class="form-control btn btn-primary" >
+
+    </form>
+</div> 
+
+{% comment %} <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div> {% endcomment %}
+
+{% endblock %}   

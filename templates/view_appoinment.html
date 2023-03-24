@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div>
+    <h2 class="text-center mt-3">View Appoinment</h2>
+    <br>
+    <hr>
+    <br>
+    <div class="container">
+    {% include 'parts/alert.html' %}
+    </div>
+    <hr>
+    <table class="table table-hover mt-3">
+        <thead>
+          <tr>
+            <th scope="col">Doctor Name</th>
+            <th scope="col">Patient Name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Control  </th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for appoinment in appoinments %}
+          <tr>
+            <td>{{appoinment.doctor}}</td>
+            <td>{{appoinment.patient}}</td>
+            <td>{{appoinment.date}}</td>
+            <td>{{appoinment.time}}</td>
+            <td>
+                <a href="{% url 'delete_appoinment' appoinment.id %}"
+                onclick="return confirm('Are You Sure To Delete Appoinment')" class="btn btn-danger">Delete</a>  
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+</div>    
+<br>
+{% endblock content %}  

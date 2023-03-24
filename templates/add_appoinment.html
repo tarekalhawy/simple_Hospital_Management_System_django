@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+<h2 class="text-center mt-5">Add Appoinment</h2>    
+<hr>
+{% include 'parts/alert.html' %}
+<form method="POST">
+    {% csrf_token %}
+    <label>Doctor Name </label>
+    <select class="form-control" name="name_doctor">
+        {% for doctor in doctors %}
+            <option value="{{doctor.name}}">{{doctor.name}}</option>
+        {% endfor %}
+    </select>   
+
+    <label>Patient Name </label>
+    <select class="form-control" name="name_patient">
+        {% for patient in patients %}
+            <option value="{{patient.name}}">{{patient.name}}</option>
+        {% endfor %}
+    </select>
+    <label>date </label>
+    <input type="date" class="form-control" name="date" required>
+
+    <label>time </label>
+    <input type="time" class="form-control" name="time" required>
+
+    <input type="submit" name="btn_add_appoinment" value="Add Patient" class="form-control btn btn-primary" >
+
+</form>
+</div> 
+
+
+{% endblock %}   
